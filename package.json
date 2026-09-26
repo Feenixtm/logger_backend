@@ -1,8 +1,11 @@
 {
   "dependencies": {
+    "@prisma/adapter-pg": "^7.10.0",
+    "@prisma/client": "^7.10.0",
     "cors": "^2.8.6",
     "dotenv": "^18.0.3",
-    "express": "^5.2.1"
+    "express": "^5.2.1",
+    "pg": "^8.23.0"
   },
   "name": "logger_backend",
   "version": "1.0.0",
@@ -23,5 +26,12 @@
   "bugs": {
     "url": "https://github.com/Feenixtm/logger_backend/issues"
   },
-  "homepage": "https://github.com/Feenixtm/logger_backend#readme"
+  "homepage": "https://github.com/Feenixtm/logger_backend#readme",
+  "devDependencies": {
+    "prisma": "^7.10.0"
+  },
+  "allowScripts": {
+    "prisma@7.10.0": true,
+    "@prisma/engines@7.10.0": true
+  }
 }

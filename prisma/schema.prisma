@@ -1,0 +1,69 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id Int @id @default(autoincrement())
+  username String @unique
+  displayName String
+  password String
+  createdAt DateTime @default(now())
+
+  habits Habit[]
+  journalEntries JournalEntry[]
+  tasks Task[]
+}
+
+model Habit {
+  id Int @id @default(autoincrement())
+  name String
+  description String?
+  createdAt DateTime @default(now())
+
+  userId Int
+  user User @relation(fields: [userId], references: [id])
+
+  habitCofmpletions HabitCompletion[]
+}
+
+model HabitCompletion {
+  id Int @id @default(autoincrement())
+  date String 
+
+  habitId Int
+  habit Habit @relation(fields: [habitId], references: [id])
+}
+
+model JournalEntry {
+  id Int @id @default(autoincrement())
+  morningContent String?
+  afternoonContent String?
+  eveningContent String? 
+  date String
+
+  userId Int
+  user User @relation(fields: [userId], references: [id])
+}
+
+model Task {
+  id Int @id @default(autoincrement())
+  name String
+  description String?
+  completed Boolean @default(false)
+  createdAt DateTime @default(now())
+
+  userId Int
+  user User @relation(fields: [userId], references: [id])
+}
+
+
