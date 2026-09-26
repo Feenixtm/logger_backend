@@ -1,0 +1,32 @@
+###
+GET http://localhost:5050/auth/login
+
+###
+POST http://localhost:5050/auth/login
+Content-Type: application/json
+
+{
+  "username": "testuser",
+  "password": "testpw"
+}
+
+###
+GET http://localhost:5050/auth/signup
+
+###
+POST http://localhost:5050/auth/signup
+Content-Type: application/json
+
+{
+  "username": "testuser",
+  "password": "testpw"
+}
+
+###
+GET http://localhost:5050/habits
+
+###
+GET http://localhost:5050/journal
+
+###
+GET http://localhost:5050/tasks
