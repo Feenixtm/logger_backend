@@ -1,11 +1,13 @@
-import { prisma } from "../prisma/client.js";
+import { prisma } from "../lib/prisma.js";
 
 const getJournal = (req, res) => {
   res.json({ message: "Single journal gotten!" });
 };
 
-const getAllJournals = (req, res) => {
-  res.json({ message: "All journals gotten!" });
+const getAllJournals = async (req, res) => {
+  const allEntries = await prisma.journalEntry.findMany();
+
+  res.json({ message: "All journals gotten!", allEntries });
 };
 
 const createJournal = async (req, res) => {
@@ -50,7 +52,7 @@ const updateJournal = async (req, res) => {
       },
     });
 
-    res.json({ message: "Journal updated!" });
+    res.json({ message: "Journal updated!", updatedEntry });
   } catch (error) {
     res.json({ message: "Error updating journal entry!", error });
   }  
