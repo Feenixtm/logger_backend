@@ -12,6 +12,10 @@ const createJournal = async (req, res) => {
   try {
     const { date, morningEntry, afternoonEntry, eveningEntry } = req.body;
 
+    if (morningEntry.trim() === "" && afternoonEntry.trim() === "" && eveningEntry.trim() === "") {
+      return res.json({ message: "All entries are empty! Saving abandoned." });
+    }
+
     const newEntry = await prisma.journal.create({
       data: {
         date,
@@ -27,8 +31,29 @@ const createJournal = async (req, res) => {
   }
 };
 
-const updateJournal = (req, res) => {
-  res.json({ message: "Journal updated!" });
+const updateJournal = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { date, morningEntry, afternoonEntry, eveningEntry } = req.body;
+
+    if (morningEntry.trim() === "" && afternoonEntry.trim() === "" && eveningEntry.trim() === "") {
+      return res.json({ message: "All entries are empty!" });
+    }
+
+    const updatedEntry = await prisma.journal.update({
+      where: { id },
+      data: {
+        date,
+        morningEntry,
+        afternoonEntry,
+        eveningEntry,
+      },
+    });
+
+    res.json({ message: "Journal updated!" });
+  } catch (error) {
+    res.json({ message: "Error updating journal entry!", error });
+  }  
 };
 
 const deleteJournal = (req, res) => {
