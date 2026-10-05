@@ -17,11 +17,36 @@ Content-Type: application/json
   "password": "adminpw"
 }
 
-###
+### HABITS
+
+### Get all habits by ascending order - WORKS
 GET http://localhost:5050/habits
+Content-Type: application/json
 
-###
-GET http://localhost:5050/journal
+{
+  "userId": 1
+}
 
-###
-GET http://localhost:5050/tasks
+### Create a habit - WORKS
+POST http://localhost:5050/habits
+Content-Type: application/json
+
+{
+  "name": "Mock Habit 4",
+  "description": "Some description of Mock Habit 4",
+  "userId": 1
+}
+
+### Update a habit - WORKS
+PUT http://localhost:5050/habits/1
+Content-Type: application/json
+
+{
+  "name": "Updated Mock Habit 1",
+  "description": "Updated habit description for Mock Habit 1"
+}
+
+
+### Delete a habit - WORKS
+DELETE http://localhost:5050/habits/4
+Content-Type: application/json

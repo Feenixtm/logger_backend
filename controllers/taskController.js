@@ -1,3 +1,5 @@
+import { prisma } from "../lib/prisma.js";
+
 const getAllTasks = (req, res) => {
   res.json({ message: "All tasks gotten!" });
 };
