@@ -17,7 +17,9 @@ Content-Type: application/json
   "password": "adminpw"
 }
 
-### HABITS
+### -----------------------------
+### ---------- HABITS -----------
+### -----------------------------
 
 ### Get all habits by ascending order - WORKS
 GET http://localhost:5050/habits
@@ -53,8 +55,9 @@ Content-Type: application/json
 
 
 
-
-### TASKS
+### -----------------------------
+### ----------- TASKS -----------
+### -----------------------------
 
 ### Get all tasks by ascending order - WORKS
 GET http://localhost:5050/tasks
@@ -86,4 +89,43 @@ Content-Type: application/json
 
 ### Delete a task - WORKS
 DELETE http://localhost:5050/tasks/4
+Content-Type: application/json
+
+
+### -----------------------------
+### ---------- JOURNAL ----------
+### -----------------------------
+
+### Get all journal entries - WORKS
+GET http://localhost:5050/journal
+Content-Type: application/json
+
+{
+  "userId": 1
+}
+
+### Create a journal entry - WORKS
+POST http://localhost:5050/journal
+Content-Type: application/json
+
+{
+  "date": "2026-01-05",
+  "morningContent": "Mock morning entry 5",
+  "afternoonContent": "Mock afternoon entry 5",
+  "eveningContent": "Mock evening entry 5",
+  "userId": 1
+}
+
+### Update journal entry - WORKS
+PUT http://localhost:5050/journal/1
+Content-Type: application/json
+
+{
+  "morningContent": "Updated mock morning entry 1",
+  "afternoonContent": "Updated mock afternoon entry 1",
+  "eveningContent": "Updated mock evening entry 1"
+}
+
+### Delete Journal entry - WORKS
+DELETE http://localhost:5050/journal/5
 Content-Type: application/json

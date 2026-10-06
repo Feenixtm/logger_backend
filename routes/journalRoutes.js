@@ -3,15 +3,13 @@ const journalRouter = express.Router();
 
 import { 
     getAllJournals, 
-    getJournal, 
-    createJournal, 
+    createJournalEntry, 
     updateJournal, 
     deleteJournal 
 } from "../controllers/journalController.js";
 
 journalRouter.get("/", getAllJournals);
-journalRouter.get("/:id", getJournal);
-journalRouter.post("/", createJournal);
+journalRouter.post("/", createJournalEntry);
 journalRouter.put("/:id", updateJournal);
 journalRouter.delete("/:id", deleteJournal);
 
