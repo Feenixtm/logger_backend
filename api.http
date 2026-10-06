@@ -50,3 +50,40 @@ Content-Type: application/json
 ### Delete a habit - WORKS
 DELETE http://localhost:5050/habits/4
 Content-Type: application/json
+
+
+
+
+### TASKS
+
+### Get all tasks by ascending order - WORKS
+GET http://localhost:5050/tasks
+Content-Type: application/json
+
+{
+  "userId": 1
+}
+
+### Create a task - WORKS
+POST http://localhost:5050/tasks
+Content-Type: application/json
+
+{
+  "name": "Mock Task 4",
+  "description": "Some description of Mock Task 4",
+  "userId": 1
+}
+
+### Update a task - WORKS
+PUT http://localhost:5050/tasks/1
+Content-Type: application/json
+
+{
+  "name": "Updated Mock Task 1",
+  "description": "Updated task description for Mock Task 1"
+}
+
+
+### Delete a task - WORKS
+DELETE http://localhost:5050/tasks/4
+Content-Type: application/json
