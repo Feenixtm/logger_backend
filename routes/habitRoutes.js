@@ -6,13 +6,20 @@ import {
     getHabit, 
     createHabit, 
     updateHabit, 
-    deleteHabit 
+    deleteHabit,
+    markHabitAsComplete,
+    markHabitAsIncomplete
 } from "../controllers/habitController.js";
 
-habitRouter.get("/", getAllHabits);
-habitRouter.get("/:id", getHabit);
-habitRouter.post("/", createHabit);
-habitRouter.put("/:id", updateHabit);
-habitRouter.delete("/:id", deleteHabit);
+import { authenticateToken } from "../middleware/auth.js"
+
+habitRouter.get("/", authenticateToken, getAllHabits);
+habitRouter.get("/:id", authenticateToken, getHabit);
+habitRouter.post("/", authenticateToken, createHabit);
+habitRouter.put("/:id", authenticateToken, updateHabit);
+habitRouter.delete("/:id", authenticateToken, deleteHabit);
+
+habitRouter.post("/datesCompleted/", authenticateToken, markHabitAsComplete);
+habitRouter.delete("/datesCompleted/:id", authenticateToken, markHabitAsIncomplete);
 
 export default habitRouter;
