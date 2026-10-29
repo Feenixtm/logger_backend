@@ -8,9 +8,11 @@ import {
     deleteJournal 
 } from "../controllers/journalController.js";
 
-journalRouter.get("/", getAllJournals);
-journalRouter.post("/", createJournalEntry);
-journalRouter.put("/:id", updateJournal);
-journalRouter.delete("/:id", deleteJournal);
+import { authenticateToken } from "../middleware/auth.js"
+
+journalRouter.get("/", authenticateToken, getAllJournals);
+journalRouter.post("/", authenticateToken, createJournalEntry);
+journalRouter.put("/:id", authenticateToken, updateJournal);
+journalRouter.delete("/:id", authenticateToken, deleteJournal);
 
 export default journalRouter;

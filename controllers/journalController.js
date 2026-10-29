@@ -1,9 +1,10 @@
 import { prisma } from "../lib/prisma.js";
 
 const getAllJournals = async (req, res) => {
+
   const allEntries = await prisma.journalEntry.findMany({
     where: {
-      userId: Number(req.body.userId)
+      userId: Number(req.user.id)
     }
   });
 
@@ -13,9 +14,9 @@ const getAllJournals = async (req, res) => {
 const createJournalEntry = async (req, res) => {
   try {
 
-    const { userId } = req.body;
-    const { date } = req.body;
-    const { morningContent, afternoonContent, eveningContent } = req.body;
+    // const { userId } = req.body;
+    const userId = req.user.id;
+    const { date, morningContent, afternoonContent, eveningContent } = req.body;
 
     if (morningContent.trim() === "" && afternoonContent.trim() === "" && eveningContent.trim() === "") {
       return res.json({ message: "All entries are empty! Saving abandoned." });
