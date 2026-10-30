@@ -8,9 +8,11 @@ import {
     deleteTask 
 } from "../controllers/taskController.js";
 
-taskRouter.get("/", getAllTasks);
-taskRouter.post("/", createTask);
-taskRouter.put("/:id", updateTask);
-taskRouter.delete("/:id", deleteTask);
+import { authenticateToken } from "../middleware/auth.js"
+
+taskRouter.get("/", authenticateToken, getAllTasks);
+taskRouter.post("/", authenticateToken, createTask);
+taskRouter.put("/:id", authenticateToken, updateTask);
+taskRouter.delete("/:id", authenticateToken, deleteTask);
 
 export default taskRouter;

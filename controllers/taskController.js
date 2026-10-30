@@ -4,7 +4,7 @@ const getAllTasks = async (req, res) => {
   try {
     const tasks = await prisma.task.findMany({
       where: {
-        userId: Number(req.body.userId)
+        userId: Number(req.user.id)
       },
       orderBy: {
         id: "asc"
@@ -19,12 +19,16 @@ const getAllTasks = async (req, res) => {
 
 const createTask = async (req, res) => {
   try {
+    const { title, description, dueDate, isDone, dateDone } = req.body;
+
     const createdTask = await prisma.task.create({
       data: {
-        name: req.body.name,
-        description: req.body.description,
-        completed: false,
-        userId: Number(req.body.userId),
+        title,
+        description,
+        dueDate,
+        isDone,
+        dateDone,
+        userId: Number(req.user.id),
       }
     })
 
@@ -36,14 +40,19 @@ const createTask = async (req, res) => {
 
 const updateTask = async (req, res) => {
   try {
+    const { title, description, dueDate, isDone, dateDone } = req.body;
+
+
     const updatedTask = await prisma.task.update({
       where: {
         id: Number(req.params.id)
       },
       data: {
-        name: req.body.name,
-        description: req.body.description,
-        completed: req.body.completed
+        title,
+        description,
+        dueDate,
+        isDone,
+        dateDone
       }
     })
 
